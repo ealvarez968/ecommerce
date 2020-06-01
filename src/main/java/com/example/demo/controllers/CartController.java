@@ -45,6 +45,7 @@ public class CartController {
 		Cart cart = user.getCart();
 		IntStream.range(0, request.getQuantity())
 			.forEach(i -> cart.addItem(item.get()));
+		cart.setUser(user);
 		cartRepository.save(cart);
 		return ResponseEntity.ok(cart);
 	}
@@ -62,6 +63,7 @@ public class CartController {
 		Cart cart = user.getCart();
 		IntStream.range(0, request.getQuantity())
 			.forEach(i -> cart.removeItem(item.get()));
+		cart.setUser(user);
 		cartRepository.save(cart);
 		return ResponseEntity.ok(cart);
 	}
