@@ -59,6 +59,7 @@ public class UserController {
 		user.setCart(cart);
 		if(createUserRequest.getPassword().length() < 7 ||
 				!createUserRequest.getPassword().equals(createUserRequest.getConfirmPassword())){
+			log.info("Password doesn't meet requirements.");
 			return ResponseEntity.badRequest().build();
 		}
 		user.setPassword(bCryptPasswordEncoder.encode(createUserRequest.getPassword()));
